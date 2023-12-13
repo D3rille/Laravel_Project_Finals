@@ -1,0 +1,72 @@
+body{
+    background: #E4E9F7;
+}
+.product-form {
+    background: #fff;
+    margin-top: 5%;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px #cbced1, -5px -5px 10px #cbced1;
+}
+
+.product-form.form-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.product-form .form-group .form-control {
+    width: 100%;
+    margin: 10px auto;
+}
+
+.product-form .form-control{
+    border-radius:1rem;
+}
+.form-image{
+    text-align: center;
+}
+.form-image img{
+    border-radius: 6rem;
+    width: 11%;
+    margin-top: -3%;
+    transform: rotate(0deg);
+}
+.product-form form{
+    padding: 14%;
+    text-align: center;
+}
+.product-form form .row{
+    margin-bottom: -7%;
+    text-align: center;
+}
+.product-form h3{
+    margin-bottom: 3%;
+    margin-top: -10%;
+    text-align: center;
+    color: #1A4D2E;
+}
+.product-form .btn-Submit {
+    width: 50%;
+    border: none;
+    border-radius: 1rem;
+    padding: 1.5%;
+    background: #1A4D2E;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+}
+.product-form .btnCancel {
+    width: 50%;
+    border: none;
+    border-radius: 1rem;
+    padding: 1.5%;
+    background: #929493;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+}
