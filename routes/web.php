@@ -26,7 +26,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function(){
     Route::get("/cropManagement", [CropController::class, 'index'])->name('admin.cropManagement');
     Route::post('/admin/user/{id}/change-role', [AdminController::class, 'changeRole'])->name('admin.changeRole');
     // Crop Management
-    Route::post('/cropsManagement', [CropController::class, 'store'])->name('crops.store');
+    Route::post('/cropManagement', [CropController::class, 'store'])->name('crops.store');
     Route::delete('/cropsManagement/{id}', [CropController::class, 'destroy'])->name('crops.destroy');
 
 });

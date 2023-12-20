@@ -16,7 +16,7 @@ class CropController extends Controller
     public function index()
     {
 
-        // $data = Crop::all();
+        $crops = Crop::all();
         $results = Product::selectRaw('products.crop_id, crops.name, SUM(products.quantity) as quantitySold, AVG(products.price) as avgPrice, DATE(products.created_at) as date')
             ->join('crops', 'products.crop_id', '=', 'crops.crop_id')
             ->groupBy('crops.name', 'products.crop_id', 'date') // Group by crop name, crop_id, and date
@@ -69,6 +69,21 @@ class CropController extends Controller
                     'sales_change' => $salesChange,
                     'date' => $latest['date'],
                 ];
+            }
+        }
+
+        foreach ($crops as $crop) {
+            $found = false;
+
+            foreach($resultArray as $result){
+                if($result['crop_id']===$crop['crop_id']){
+                    $found = true;
+                    break;
+                }
+            }
+
+            if(!$found){
+                $resultArray[] = $crop;
             }
         }
 
