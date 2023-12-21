@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,10 +10,16 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/fontawesome.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/fontawesome.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -22,43 +29,97 @@
 
     {{-- @yield('customStyle') --}}
     <style>
-        /* Adjust the styling for the sidebar container */
-        .sidebar-container {
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        .bg-custom {
+            background-color: #2E603A;
+            color: #fff;
+        }
+
+
+        .navbar-nav .nav-link {
+            color: #fff;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: white;
+
+        }
+
+        #app {
+            background-color: #F6F6F6;
+        }
+
+        .navbar {
+            background-color: #2E603A;
+        }
+
+        .navbar-toggler-icon {
+            background-color: #fff;
+        }
+
+        .nav-link {
+            color: #fff;
+        }
+
+        .nav-link:hover {
+            color: #286652;
+        }
+
+        .sidebar {
+            background-color: #F6F6F6;
+            color: #286652;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: start;
             height: 100vh;
-            width: 200px;
-            background-color: #333;
-            padding-top: 20px;
+        }
+
+        .sidebar-container {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            height: 100%;
+        }
+
+        .nav-link {
+            color: #286652;
+            transition: background-color 0.3s;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .nav-link:hover {
+            background-color: #286652;
             color: white;
         }
 
-        .sidebar-container a {
-            padding: 10px;
-            color: white;
-            text-decoration: none;
+        .nav-link i {
+            margin-right: 8px;
         }
-
-        .sidebar-container a:hover {
-            background-color: #555;
-        }
-
-        .content {
-            padding: 20px;
-        }
+        
     </style>
 
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
+
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-dark navbar-expand-md bg-custom">
             <div class="container">
+                <img src="{{ asset('./img/logo-only.png') }}" alt="Logo" width="60px">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{-- {{ config('app.name', 'Laravel') }} --}}
                     CropWatch
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -85,13 +146,14 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
@@ -107,32 +169,34 @@
             </div>
         </nav>
         <div class="row">
-            {{-- side bar --}}
-            <div class="col-2"
-            style="
-            height: 100vh;
-            border-right: 1px solid #c5c5c5;
-            background-color: #ffffff;
-            padding-top: 20px;
-            color: white;"
-            >
-            <div class="p-4">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{route('admin.userManagement')}}">User Management</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('admin.cropManagement')}}">Crop Management</a>
-                    </li>
-                </ul>
-
+            {{-- Sidebar --}}
+            <div class="col-2" style="height: 100vh; padding-top: 20px;">
+                <div class="card" style="background-color: #2E603A; color: white; border: none;">
+                    <div class="card-body p-4">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="{{ route('admin.userManagement') }}"
+                                    style="color: white;">User Management</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.cropManagement') }}"
+                                    style="color: white;">Crop Management</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            </div>
-            {{-- content --}}
+            {{-- Content --}}
             <main class="py-4 col-10">
-                @yield('content')
+                <div class="card" style="border: none;">
+                    <div class="card-body p-4">
+                        @yield('content')
+                    </div>
+                </div>
             </main>
         </div>
+
     </div>
 </body>
+
 </html>

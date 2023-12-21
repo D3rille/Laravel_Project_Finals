@@ -1,8 +1,6 @@
 /* Importing fonts from Google */
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100;400;700&display=swap');
 
-
-
 .error-message {
     color: red;
 }
@@ -10,7 +8,6 @@
 .success-message {
     color: green;
 }
-
 
 .error-message:empty {
     display: none;
@@ -23,8 +20,7 @@
     height: 1vh;
 }
 
-
-/* Reseting */
+/* Resetting */
 * {
     margin: 0;
     padding: 0;
@@ -33,7 +29,7 @@
 }
 
 body {
-    background: #ecf0f3;
+    background: #F6F6F6;  /* Updated to main background color */
 }
 
 .wrapper {
@@ -41,7 +37,7 @@ body {
     min-height: 500px;
     margin: 80px auto;
     padding: 40px 30px 30px 30px;
-    background-color: #ecf0f3;
+    background-color: #F6F6F6;  /* Updated to main background color */
     border-radius: 15px;
     box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
 }
@@ -57,7 +53,7 @@ body {
     object-fit: cover;
     border-radius: 50%;
     box-shadow: 0px 0px 3px #5f5f5f,
-        0px 0px 0px 5px #ecf0f3,
+        0px 0px 0px 5px #F6F6F6,  /* Updated to main background color */
         8px 8px 15px #a7aaa7,
         -8px -8px 15px #fff;
 }
@@ -79,7 +75,7 @@ body {
     font-size: 1.2rem;
     color: #666;
     padding: 10px 15px 10px 10px;
-    /* border: 1px solid red; */
+    background-color: #F6F6F6;  /* Updated to main background color */
 }
 
 .wrapper .form-field {
@@ -97,7 +93,7 @@ body {
     box-shadow: none;
     width: 100%;
     height: 40px;
-    background-color: #1A4D2E;
+    background-color: #2E603A;  /* Updated to green color */
     color: #fff;
     border-radius: 25px;
     box-shadow: 3px 3px 3px #b1b1b1,
@@ -106,17 +102,17 @@ body {
 }
 
 .wrapper .btn:hover {
-    background-color: #003a17;
+    background-color: #286652;  /* Updated to green hover color */
 }
 
 .wrapper a {
     text-decoration: none;
     font-size: 0.8rem;
-    color: #1A4D2E;
+    color: #2E603A;  /* Updated to green color */
 }
 
 .wrapper a:hover {
-    color: #003a17;
+    color: #286652;  /* Updated to green hover color */
 }
 
 @media(max-width: 380px) {

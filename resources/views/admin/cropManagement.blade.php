@@ -1,114 +1,126 @@
 @extends('layouts.admin')
 
-
 @section('content')
-    @if(session('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     @endif
-    <p class="fs-1 fw-bold">Product List</p>
-    <p class="fs-4">Data as of {{now()->toDateString()}}</p>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-        Add Product
-    </button>
-    <div class="p-4 mx-4">
-        <table class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">CropId</th>
-                <th scope="col">Name</th>
-                <th scope="col">Average Price</th>
-                <th scope="col">Sales Change</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-                @foreach ($data as $crop)
-                    <tr>
-                        <th scope="row">{{ $crop['crop_id'] }}</th>
-                        <td>{{$crop['name']}}</td>
-                        <td>P {{number_format($crop['average_price'], 2)}}</td>
-                        <td style="color:
-                            @if($crop['sales_change'] > 0)
-                                green
-                            @elseif($crop['sales_change'] < 0)
-                                red
-                            @else
-                                black
-                            @endif
-                        ">{{round($crop['sales_change'], 2)}}</td>
-                        <td>
-                            {{-- data-bs-toggle="modal" data-bs-target="#deleteModal" --}}
-                            <form action="{{ route('crops.destroy', $crop['crop_id']) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-          </table>
+
+    <div class="container">
+        <style>
+            /* Add these styles to your CSS file */
+            .product-list-card {
+                border: none;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                background-color: #F6F6F6;
+            }
+
+            .table th,
+            .table td {
+                text-align: center;
+            }
+
+            
+            .btn-primary {
+                background-color: #2E603A;
+                border-color: #2E603A;
+            }
+
+            .btn-primary:hover {
+                background-color: #286652;
+                border-color: #286652;
+            }
+        </style>
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card product-list-card">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="fs-3 fw-bold">Product List</span>
+                            <span class="fs-5">Data as of {{ now()->toDateString() }}</span>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                                Add Product
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">CropId</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Average Price</th>
+                                        <th scope="col">Sales Change</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($data as $crop)
+                                        <tr>
+                                            <th scope="row">{{ $crop['crop_id'] }}</th>
+                                            <td>{{ $crop['name'] }}</td>
+                                            <td>P {{ number_format($crop['average_price'], 2) }}</td>
+                                            <td
+                                                style="color:
+                                        @if ($crop['sales_change'] > 0) green
+                                        @elseif($crop['sales_change'] < 0)
+                                            red
+                                        @else
+                                            black @endif
+                                    ">
+                                                {{ round($crop['sales_change'], 2) }}</td>
+                                            <td>
+                                                <form action="{{ route('crops.destroy', $crop['crop_id']) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger">
+                                                        <i class="fas fa-trash"></i> Delete
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <form action="{{ route('crops.store') }}" method="post">
                     @csrf
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Enter Crop Name</h5>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                    <div class="modal-header bg-success text-white">
+                        <h5 class="modal-title" id="exampleModalLabel">Add New Crop</h5>
+                        <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close">
                         </button>
                     </div>
                     <div class="modal-body">
                         <!-- Input field inside the modal body -->
-                        <p>Enter the name of the crop.</p>
-                        <input type="text" class="form-control" id="name" placeholder="Crop Name" name="name">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Crop Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter Crop Name"
+                                name="name">
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        {{-- <a href="#" class="btn btn-primary">Submit</a> --}}
-                        {{-- {{route("#")}} place this in href to route or just use submit and change the action on the form--}}
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-success">Submit</button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
-
-    {{-- Modal --}}
-    {{-- <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <form action="">
-                    @csrf
-                    @method('delete')
-
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Delete Crop</h5>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Input field inside the modal body -->
-                        <p>Are you sure you want to delete this crop? This action is irreversible, proceed?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-    </div> --}}
 @endsection
