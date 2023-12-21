@@ -22,7 +22,7 @@
                 text-align: center;
             }
 
-            
+
 
             .btn-danger:hover,
             .btn-outline-secondary:hover {
@@ -70,9 +70,13 @@
                                             </td>
                                             <td>
                                                 <div class="d-flex">
-                                                    <a href="#" class="btn btn-danger mx-2">
-                                                        <i class="fas fa-trash"></i> Delete
-                                                    </a>
+                                                    <form action="{{ route('admin.destroy', $user->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn-danger mx-2" type="submit">
+                                                            <i class="fas fa-trash"></i> Delete
+                                                        </button>
+                                                    </form>
                                                     <form action="{{ route('admin.changeRole', $user->id) }}"
                                                         method="POST">
                                                         @csrf

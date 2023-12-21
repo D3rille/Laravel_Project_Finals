@@ -23,6 +23,7 @@ use App\Http\Controllers\RecordController;
 //admin
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function(){
     Route::get("/userManagement", [AdminController::class, 'index'])->name('admin.userManagement');
+    Route::delete('/userManagement/delete/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
     Route::get("/cropManagement", [CropController::class, 'index'])->name('admin.cropManagement');
     Route::post('/admin/user/{id}/change-role', [AdminController::class, 'changeRole'])->name('admin.changeRole');
     // Crop Management
