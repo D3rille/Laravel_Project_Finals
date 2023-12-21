@@ -43,14 +43,14 @@
                         <td>{{ $crop['name'] }}</td>
                         <td>P {{ number_format($crop['average_price'], 2) }}</td>
                         <td
-                            style="color: 
+                            style="color:
                         @if ($crop['sales_change'] > 0) green
                         @elseif($crop['sales_change'] < 0)
                             red
                         @else
                             black @endif
                     ">
-                            {{ round($crop['sales_change'], 2) }}</td>
+                            {{ round($crop['sales_change'], 2) }} %</td>
                         <td>
                             <a href="{{ route('graph', ['cropName' => $crop['name'], 'id' => $crop['crop_id']]) }}"
                                 class="btn btn-success">Graph</a>

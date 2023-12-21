@@ -23,7 +23,7 @@
                 text-align: center;
             }
 
-            
+
             .btn-primary {
                 background-color: #2E603A;
                 border-color: #2E603A;
@@ -73,7 +73,7 @@
                                         @else
                                             black @endif
                                     ">
-                                                {{ round($crop['sales_change'], 2) }}</td>
+                                                {{ round($crop['sales_change'], 2) }}%</td>
                                             <td>
                                                 <form action="{{ route('crops.destroy', $crop['crop_id']) }}"
                                                     method="post">
